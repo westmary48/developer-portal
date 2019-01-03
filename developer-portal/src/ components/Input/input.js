@@ -4,7 +4,7 @@ import './input.scss';
 class Input extends React.Component {
   render() {
     return (
-      <div className="Input">
+      <div className="Input col">
         <h2>Input</h2>
       </div>
     );

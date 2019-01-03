@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Collapse,
   Navbar,
@@ -11,6 +12,11 @@ import {
 import './MyNavbar.scss';
 
 class MyNavbar extends React.Component {
+    static propTypes = {
+      isAuthed: PropTypes.bool,
+      logoutClickEvent: PropTypes.func,
+    }
+
   state = {
     isOpen: false,
   };
@@ -22,7 +28,7 @@ class MyNavbar extends React.Component {
     return (
       <div className="my-navbar">
       <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">Zillone</NavbarBrand>
+          <NavbarBrand href="/">Developer Portal</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
