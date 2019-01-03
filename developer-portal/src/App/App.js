@@ -6,16 +6,22 @@ import connection from '../helpers/data/connections';
 
 import Auth from '../ components/Auth/auth';
 import Bio from '../ components/Bio/bio';
-import Assignments from '../ components/Assignments/assignments';
 import MyNavbar from '../ components/MyNavbar/MyNavbar';
 import Input from '../ components/Input/input';
+import Tutorials from '../ components/Tutorials/tutorials';
+import Resources from '../ components/Resources/resources';
 
 import './App.scss';
 import authRequests from '../helpers/data/authRequests';
+import Blogs from '../ components/Blogs/blogs';
 
 class App extends Component {
   state = {
     authed: false,
+    tutorials: [],
+    resources: [],
+    blogs: [],
+    podcasts: [],
   }
 
   componentDidMount() {
@@ -32,6 +38,18 @@ class App extends Component {
       }
     });
   }
+
+  // deleteOne = (listingId) => {
+  //   listingRequests.deleteListing(listingId)
+  //     .then(() => {
+  //       listingRequests.getRequest()
+  //         .then((listings) => {
+  //           this.setState({ listings });
+  //         });
+  //     })
+  //     .catch(err => console.error('error with delete single', err));
+  // }
+
 
   componentWillUnmount() {
     this.removeListener();
@@ -59,7 +77,9 @@ class App extends Component {
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
         <Bio />
-        <Assignments />
+        <Blogs />
+        <Tutorials />
+        <Resources />
         <Input />
       </div>
     );

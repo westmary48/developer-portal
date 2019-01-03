@@ -1,0 +1,37 @@
+{
+    "tutorial1" : {
+      "title":"Code School",
+      "url":"https://www.pluralsight.com/codeschool",
+      "uid":"emSretCcgRUTCOZnrusHPsVhk263",
+      "tab":"tutorial",
+      "isCompleted": false
+    },
+    "tutorial2" : {
+      "title":"freeCodeCamp",
+      "url":"https://www.freecodecamp.org/",
+      "uid":"emSretCcgRUTCOZnrusHPsVhk263",
+      "tab":"tutorial",
+      "isCompleted": false
+    },
+    "tutorial3" : {
+      "title":"Treehouse",
+      "url":"https://teamtreehouse.com/home",
+      "uid":"emSretCcgRUTCOZnrusHPsVhk263",
+      "tab":"tutorial",
+      "isCompleted": false
+    },
+    "tutorial4" : {
+      "title":"A Guide to Becoming a Full-Stack Developer in 2017",
+      "url":"https://medium.com/coderbyte/a-guide-to-becoming-a-full-stack-developer-in-2017-5c3c08a1600c",
+      "uid":"emSretCcgRUTCOZnrusHPsVhk263",
+      "tab":"tutorial",
+      "isCompleted": false
+    },
+    "tutorial5" : {
+      "title":"Dynamic Programming — From Novice to Advanced",
+      "url":"https://www.topcoder.com/community/competitive-programming/tutorials/dynamic-programming-from-novice-to-advanced/",
+      "uid":"emSretCcgRUTCOZnrusHPsVhk263",
+      "tab":"tutorial",
+      "isCompleted": false
+    }
+  }
