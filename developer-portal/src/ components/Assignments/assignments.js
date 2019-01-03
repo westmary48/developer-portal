@@ -4,7 +4,7 @@ import './assignments.scss';
 class Assignments extends React.Component {
   render() {
     return (
-      <div className="Assignments">
+      <div className="Assignments col">
         <h2>Assignments</h2>
       </div>
     );
