@@ -22,7 +22,10 @@ const getPodcastsRequest = () => new Promise((resolve, reject) => {
 
 const deletePodcasts = podcastsId => axios.delete(`${firebaseUrl}/podcasts/${podcastsId}.json`);
 
+const updatePodcasts = (podcastId, isCompleted) => axios.patch(`${firebaseUrl}/podcasta/${podcastId}.json`, { isCompleted });
+
 export default {
   deletePodcasts,
   getPodcastsRequest,
+  updatePodcasts,
 };

@@ -12,7 +12,7 @@ class Tutorials extends React.Component {
   }
 
     static propTypes = {
-      resource: informationShape,
+      tutorial: informationShape,
       deleteSingleTutorial: PropTypes.func,
       updateSingleTutorial: PropTypes.func,
     }
@@ -48,7 +48,7 @@ class Tutorials extends React.Component {
       return <span className="col-2"></span>;
     };
     return (
-        <li className="resource-item row">
+        <li className="tutorial-item row">
           <span className="col-4">{tutorial.title}</span>
           <a href={tutorial.url} target="_blank" rel="noreferrer noopener" className="col-4">{tutorial.url}</a>
           {makeButtons()}
