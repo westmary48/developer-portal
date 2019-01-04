@@ -21,7 +21,11 @@ const getResourceRequest = () => new Promise((resolve, reject) => {
 
 const deleteResources = resourceId => axios.delete(`${firebaseUrl}/resources/${resourceId}.json`);
 
+const updateResource = (resourcesId, isCompleted) => axios.patch(`${firebaseUrl}/resources/${resourcesId}.json`, { isCompleted });
+
+
 export default {
   deleteResources,
   getResourceRequest,
+  updateResource,
 };

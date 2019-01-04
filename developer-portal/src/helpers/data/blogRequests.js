@@ -21,7 +21,10 @@ const getBlogRequest = () => new Promise((resolve, reject) => {
 
 const deleteBlogs = blogId => axios.delete(`${firebaseUrl}/blogs/${blogId}.json`);
 
+const updateBlogs = (blogId, isCompleted) => axios.patch(`${firebaseUrl}/blogs/${blogId}.json`, { isCompleted });
+
 export default {
   deleteBlogs,
   getBlogRequest,
+  updateBlogs,
 };
