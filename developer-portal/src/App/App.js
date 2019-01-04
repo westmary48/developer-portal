@@ -13,6 +13,7 @@ import Resources from '../ components/Resources/resources';
 
 import './App.scss';
 import authRequests from '../helpers/data/authRequests';
+import getResourceRequest from '../helpers/data/resourceRequests';
 import Blogs from '../ components/Blogs/blogs';
 
 class App extends Component {
@@ -26,6 +27,11 @@ class App extends Component {
 
   componentDidMount() {
     connection();
+    getResourceRequest.getRequest()
+      .then((resources) => {
+        this.setState({ resources });
+      })
+      .catch(err => console.error('error with listing GET', err));
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
@@ -79,7 +85,7 @@ class App extends Component {
         <Bio />
         <Blogs />
         <Tutorials />
-        <Resources />
+        <Resources resources={this.state.resources}/>
         <Input />
       </div>
     );
