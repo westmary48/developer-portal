@@ -49,7 +49,7 @@ class Podcasts extends React.Component {
     };
     return (
         <li className="podcasts-item row">
-          <span className="col-4">{podcast.title}</span>
+          <span className="col-4">{podcast.name}</span>
           <a href={podcast.url} target="_blank" rel="noreferrer noopener" className="col-4">{podcast.url}</a>
           {makeButtons()}
           <div className="checkbox-div">

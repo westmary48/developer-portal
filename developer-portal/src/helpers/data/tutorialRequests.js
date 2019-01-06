@@ -1,6 +1,5 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys';
-import Tutorials from '../../ components/Tutorials/tutorials';
 
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
@@ -15,7 +14,7 @@ const getTutorialRequest = () => new Promise((resolve, reject) => {
           tutorials.push(res.data[key]);
         });
       }
-      resolve(Tutorials);
+      resolve(tutorials);
     })
     .catch(err => reject(err));
 });
@@ -24,9 +23,11 @@ const deleteTurorial = tutorialId => axios.delete(`${firebaseUrl}/tutorials/${tu
 
 const updateTutorial = (tutorialsId, isCompleted) => axios.patch(`${firebaseUrl}/tutorials/${tutorialsId}.json`, { isCompleted });
 
+const postTutorial = tutorial => axios.post(`${firebaseUrl}/tutorials.json`, tutorial);
 
 export default {
   deleteTurorial,
   getTutorialRequest,
   updateTutorial,
+  postTutorial,
 };

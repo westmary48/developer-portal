@@ -1,34 +1,34 @@
 {
     "podcast1" : {
-      "title":"Shop Talk Show",
+      "name":"Shop Talk Show",
       "url":"https://shoptalkshow.com/",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab":"podcast",
       "isCompleted": false
     },
     "podcast2" : {
-      "title":"Code Newbie",
+      "name":"Code Newbie",
       "url":"https://www.codenewbie.org/podcast",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab":"podcast",
       "isCompleted": false
     },
     "podcast3" : {
-      "title":"Front End Happy Hour",
+      "name":"Front End Happy Hour",
       "url":"https://frontendhappyhour.com/",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab":"podcast",
       "isCompleted": false
     },
     "podcast4" : {
-      "title":"Software Engineering Daily",
+      "name":"Software Engineering Daily",
       "url":"https://softwareengineeringdaily.com/",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab":"podcast",
       "isCompleted": false
     },
     "podcast5" : {
-      "title":"JavaScript Jabber",
+      "name":"JavaScript Jabber",
       "url":"https://devchat.tv/js-jabber/",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab":"podcast",

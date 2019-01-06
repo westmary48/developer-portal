@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './resources.scss';
-import informationShape from '../../helpers/data/propz/information';
+import informationShape from '../../helpers/propz/information';
 
 import authRequests from '../../helpers/data/authRequests';
 
@@ -50,7 +50,7 @@ class Resources extends React.Component {
     };
     return (
         <li className="resource-item row">
-          <span className="col-4">{resource.title}</span>
+          <span className="col-4">{resource.name}</span>
           <a href={resource.url} target="_blank" rel="noreferrer noopener" className="col-4">{resource.url}</a>
           {makeButtons()}
           <div className="checkbox-div">

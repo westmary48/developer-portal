@@ -1,6 +1,5 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys';
-import Podcasts from '../../ components/Podcasts/podcasts';
 
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
@@ -15,17 +14,21 @@ const getPodcastsRequest = () => new Promise((resolve, reject) => {
           podcasts.push(res.data[key]);
         });
       }
-      resolve(Podcasts);
+      resolve(podcasts);
     })
     .catch(err => reject(err));
 });
 
 const deletePodcasts = podcastsId => axios.delete(`${firebaseUrl}/podcasts/${podcastsId}.json`);
 
-const updatePodcasts = (podcastId, isCompleted) => axios.patch(`${firebaseUrl}/podcasta/${podcastId}.json`, { isCompleted });
+const updatePodcasts = (podcastId, isCompleted) => axios.patch(`${firebaseUrl}/podcasts/${podcastId}.json`, { isCompleted });
+
+const postPodcasts = podcast => axios.post(`${firebaseUrl}/podcasts.json`, podcast);
+
 
 export default {
   deletePodcasts,
   getPodcastsRequest,
   updatePodcasts,
+  postPodcasts,
 };

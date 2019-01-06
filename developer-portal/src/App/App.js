@@ -8,17 +8,16 @@ import Auth from '../ components/Auth/auth';
 import Bio from '../ components/Bio/bio';
 import MyNavbar from '../ components/MyNavbar/MyNavbar';
 import Input from '../ components/Input/input';
-import Tutorials from '../ components/Tutorials/tutorials';
 import Resources from '../ components/Resources/resources';
+import resourceRequest from '../helpers/data/resourceRequests';
+import blogRequest from '../helpers/data/blogRequests';
+import tutorialRequest from '../helpers/data/tutorialRequests';
+import podcastsRequest from '../helpers/data/podcastsRequests';
+import InformationTracker from '../ components/InformationTracker/informationTracker';
+
 
 import './App.scss';
 import authRequests from '../helpers/data/authRequests';
-import resourceData from '../helpers/data/resourceRequests';
-import Blogs from '../ components/Blogs/blogs';
-import tutorialData from '../helpers/data/tutorialRequests';
-import blogData from '../helpers/data/blogRequests';
-import podcastData from '../helpers/data/podcastsRequests';
-import Podcasts from '../ components/Podcasts/podcasts';
 
 
 class App extends Component {
@@ -28,29 +27,30 @@ class App extends Component {
     resources: [],
     blogs: [],
     podcasts: [],
+    githubUsername: '',
   }
 
   componentDidMount() {
     connection();
-    resourceData.getResourceRequest()
+    resourceRequest.getResourceRequest()
       .then((resources) => {
         this.setState({ resources });
       })
       .catch(err => console.error('error with listing GET', err));
 
-    tutorialData.getTutorialRequest()
+    tutorialRequest.getTutorialRequest()
       .then((tutorials) => {
         this.setState({ tutorials });
       })
       .catch(error => console.error(error));
 
-    blogData.getBlogRequest()
+    blogRequest.getBlogRequest()
       .then((blogs) => {
         this.setState({ blogs });
       })
       .catch(error => console.error(error));
 
-    podcastData.getPodcastRequest()
+    podcastsRequest.getPodcastsRequest()
       .then((podcasts) => {
         this.setState({ podcasts });
       })
@@ -76,10 +76,10 @@ class App extends Component {
     this.setState({ authed: true });
   }
 
-  deleteTutorial = (tutorialId) => {
-    tutorialData.deleteTutorial(tutorialId)
+  deleteTurorial = (tutorialId) => {
+    tutorialRequest.deleteTurorial(tutorialId)
       .then(() => {
-        tutorialData.getTurtorialData()
+        tutorialRequest.getTutorialRequest()
           .then((tutorials) => {
             this.setState({ tutorials });
           });
@@ -88,9 +88,9 @@ class App extends Component {
   }
 
   updateTutorial = (tutorialId, isCompleted) => {
-    tutorialData.updateTutorial(tutorialId, isCompleted)
+    tutorialRequest.updateTutorial(tutorialId, isCompleted)
       .then(() => {
-        tutorialData.getTurtorialData()
+        tutorialRequest.getTutorialRequest()
           .then((tutorials) => {
             tutorials.sort((x, y) => x.isCompleted - y.isCompleted);
             this.setState({ tutorials });
@@ -100,9 +100,9 @@ class App extends Component {
   }
 
   updateResource = (resourceId, isCompleted) => {
-    resourceData.updateResource(resourceId, isCompleted)
+    resourceRequest.updateResource(resourceId, isCompleted)
       .then(() => {
-        resourceData.getResourceData()
+        Resources.getResourceRequest()
           .then((resources) => {
             resources.sort((x, y) => x.isCompleted - y.isCompleted);
             this.setState({ resources });
@@ -112,9 +112,9 @@ class App extends Component {
   }
 
   deleteResource = (resourceId) => {
-    resourceData.deleteResource(resourceId)
+    resourceRequest.deleteResource(resourceId)
       .then(() => {
-        resourceData.getResourceData()
+        Resources.getResourceRequest()
           .then((resources) => {
             this.setState({ resources });
           });
@@ -123,9 +123,9 @@ class App extends Component {
   }
 
   updateBlog = (blogId, isCompleted) => {
-    blogData.updateBlogs(blogId, isCompleted)
+    blogRequest.updateBlogs(blogId, isCompleted)
       .then(() => {
-        blogData.getBlogData()
+        blogRequest.getBlogRequest()
           .then((blogs) => {
             blogs.sort((x, y) => x.isCompleted - y.isCompleted);
             this.setState({ blogs });
@@ -135,9 +135,9 @@ class App extends Component {
   }
 
   deleteBlog = (blogId) => {
-    blogData.deleteBlogData(blogId)
+    blogRequest.deleteBlogData(blogId)
       .then(() => {
-        blogData.getBlogData()
+        blogRequest.getBlogRequest()
           .then((blogs) => {
             this.setState({ blogs });
           });
@@ -145,10 +145,10 @@ class App extends Component {
       .catch(err => console.error(err));
   }
 
-  updatePodcast = (podcastId, isCompleted) => {
-    podcastData.updatePodcasts(podcastId, isCompleted)
+  updatePodcast = (podcastsId, isCompleted) => {
+    podcastsRequest.updatePodcasts(podcastsId, isCompleted)
       .then(() => {
-        podcastData.getPodcastData()
+        podcastsRequest.getPodcastsRequest()
           .then((podcasts) => {
             podcasts.sort((x, y) => x.isCompleted - y.isCompleted);
             this.setState({ podcasts });
@@ -157,10 +157,10 @@ class App extends Component {
       .catch(err => console.error(err));
   }
 
-  deletePodcast = (podcastId) => {
-    podcastData.deletePodcastData(podcastId)
+  deletePodcast = (podcastsId) => {
+    podcastsRequest.deletePodcast(podcastsId)
       .then(() => {
-        podcastData.getPodcastData()
+        podcastsRequest.getPodcastsRequest()
           .then((podcasts) => {
             this.setState({ podcasts });
           });
@@ -185,12 +185,31 @@ class App extends Component {
     return (
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
-        <Bio />
-        <Blogs blogs={this.state.blogs}/>
-        <Tutorials tutorials={this.state.tutorials}/>
-        <Resources resources={this.state.resources}/>
-        <Podcasts podcasts={this.state.podcasts}/>
-        <Input />
+        <div className="row m-0">
+        <div className="col-3 align-self-start">
+          <Bio
+          bio={this.state.bio}
+          commits={this.state.commits}
+          />
+        </div>
+        <div className="col-9 align-self-start pr-0">
+          <Input onSubmit={this.inputSubmit}/>
+          <InformationTracker
+          tutorials = {this.state.tutorials}
+          deleteSingleTutorial = {this.deleteTutorial}
+          updateSingleTutorial = {this.updateTutorial}
+          resources = {this.state.resources}
+          deleteSingleResource = {this.deleteResource}
+          updateSingleResource = {this.updateResource}
+          blogs = {this.state.blogs}
+          deleteSingleBlog = {this.deleteBlog}
+          updateSingleBlog = {this.updateBlog}
+          podcasts = {this.state.podcasts}
+          deleteSinglePodcast = {this.deletePodcast}
+          updateSinglePodcast = {this.updatePodcast}
+          />
+        </div>
+        </div>
       </div>
     );
   }
