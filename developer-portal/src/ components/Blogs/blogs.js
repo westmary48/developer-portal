@@ -49,7 +49,7 @@ class Blogs extends React.Component {
     };
     return (
         <li className="blog-item row">
-          <span className="col-4">{blog.title}</span>
+          <span className="col-4">{blog.name}</span>
           <a href={blog.url} target="_blank" rel="noreferrer noopener" className="col-4">{blog.url}</a>
           {makeButtons()}
           <div className="checkbox-div">

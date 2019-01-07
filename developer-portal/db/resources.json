@@ -1,34 +1,34 @@
 {
     "resource1" : {
-      "title":"CodeAcademy",
+      "name":"CodeAcademy",
       "url":"https://www.codecademy.com/",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab": "resources",
       "isCompleted": false
     },
     "resource2" : {
-      "title":"CodeWars",
+      "name":"CodeWars",
       "url":"http://www.codewars.com/",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab": "resources",
       "isCompleted": false
     },
     "resource3" : {
-      "title":"HubSpot CMS Developer Discovery Kit",
+      "name":"HubSpot CMS Developer Discovery Kit",
       "url":"https://designers.hubspot.com/discoverykit",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab": "resources",
       "isCompleted": false
     },
     "resource4" : {
-      "title":"Khan Academy",
+      "name":"Khan Academy",
       "url":"https://www.khanacademy.org/",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab": "resources",
       "isCompleted": false
     },
     "resource5" : {
-      "title":"Code.org",
+      "name":"Code.org",
       "url":"https://code.org/",
       "uid":"emSretCcgRUTCOZnrusHPsVhk263",
       "tab": "resources",

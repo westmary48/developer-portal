@@ -20,7 +20,7 @@ class Tutorials extends React.Component {
   deleteEvent = (e) => {
     e.preventDefault();
     const { deleteSingleTutorial, tutorial } = this.props;
-    (deleteSingleTutorial(tutorial.id));
+    deleteSingleTutorial(tutorial.id);
   }
 
   updateEvent = (e) => {
@@ -49,7 +49,7 @@ class Tutorials extends React.Component {
     };
     return (
         <li className="tutorial-item row">
-          <span className="col-4">{tutorial.title}</span>
+          <span className="col-4">{tutorial.name}</span>
           <a href={tutorial.url} target="_blank" rel="noreferrer noopener" className="col-4">{tutorial.url}</a>
           {makeButtons()}
           <div className="checkbox-div">
