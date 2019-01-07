@@ -20,7 +20,7 @@ class Tutorials extends React.Component {
   deleteEvent = (e) => {
     e.preventDefault();
     const { deleteSingleTutorial, tutorial } = this.props;
-    (deleteSingleTutorial(tutorial.id));
+    deleteSingleTutorial(tutorial.id);
   }
 
   updateEvent = (e) => {

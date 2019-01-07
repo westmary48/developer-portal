@@ -32,6 +32,18 @@ class App extends Component {
 
   componentDidMount() {
     connection();
+    blogRequest.getBlogRequest()
+      .then((blogs) => {
+        this.setState({ blogs });
+      })
+      .catch(error => console.error(error));
+
+    podcastsRequest.getPodcastsRequest()
+      .then((podcasts) => {
+        this.setState({ podcasts });
+      })
+      .catch(error => console.error(error));
+
     resourceRequest.getResourceRequest()
       .then((resources) => {
         this.setState({ resources });
@@ -44,17 +56,6 @@ class App extends Component {
       })
       .catch(error => console.error(error));
 
-    blogRequest.getBlogRequest()
-      .then((blogs) => {
-        this.setState({ blogs });
-      })
-      .catch(error => console.error(error));
-
-    podcastsRequest.getPodcastsRequest()
-      .then((podcasts) => {
-        this.setState({ podcasts });
-      })
-      .catch(error => console.error(error));
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
@@ -76,52 +77,6 @@ class App extends Component {
     this.setState({ authed: true });
   }
 
-  deleteTurorial = (tutorialId) => {
-    tutorialRequest.deleteTurorial(tutorialId)
-      .then(() => {
-        tutorialRequest.getTutorialRequest()
-          .then((tutorials) => {
-            this.setState({ tutorials });
-          });
-      })
-      .catch(err => console.error(err));
-  }
-
-  updateTutorial = (tutorialId, isCompleted) => {
-    tutorialRequest.updateTutorial(tutorialId, isCompleted)
-      .then(() => {
-        tutorialRequest.getTutorialRequest()
-          .then((tutorials) => {
-            tutorials.sort((x, y) => x.isCompleted - y.isCompleted);
-            this.setState({ tutorials });
-          });
-      })
-      .catch(err => console.error(err));
-  }
-
-  updateResource = (resourceId, isCompleted) => {
-    resourceRequest.updateResource(resourceId, isCompleted)
-      .then(() => {
-        Resources.getResourceRequest()
-          .then((resources) => {
-            resources.sort((x, y) => x.isCompleted - y.isCompleted);
-            this.setState({ resources });
-          });
-      })
-      .catch(err => console.error(err));
-  }
-
-  deleteResource = (resourceId) => {
-    resourceRequest.deleteResource(resourceId)
-      .then(() => {
-        Resources.getResourceRequest()
-          .then((resources) => {
-            this.setState({ resources });
-          });
-      })
-      .catch(err => console.error(err));
-  }
-
   updateBlog = (blogId, isCompleted) => {
     blogRequest.updateBlogs(blogId, isCompleted)
       .then(() => {
@@ -135,7 +90,7 @@ class App extends Component {
   }
 
   deleteBlog = (blogId) => {
-    blogRequest.deleteBlogData(blogId)
+    blogRequest.deleteBlogs(blogId)
       .then(() => {
         blogRequest.getBlogRequest()
           .then((blogs) => {
@@ -158,11 +113,57 @@ class App extends Component {
   }
 
   deletePodcast = (podcastsId) => {
-    podcastsRequest.deletePodcast(podcastsId)
+    podcastsRequest.deletePodcasts(podcastsId)
       .then(() => {
         podcastsRequest.getPodcastsRequest()
           .then((podcasts) => {
             this.setState({ podcasts });
+          });
+      })
+      .catch(err => console.error(err));
+  }
+
+  deleteTurorial = (tutorialsId) => {
+    tutorialRequest.deleteTurorials(tutorialsId)
+      .then(() => {
+        tutorialRequest.getTutorialRequest()
+          .then((tutorials) => {
+            this.setState({ tutorials });
+          });
+      })
+      .catch(err => console.error(err));
+  }
+
+  updateTutorial = (tutorialsId, isCompleted) => {
+    tutorialRequest.updateTutorial(tutorialsId, isCompleted)
+      .then(() => {
+        tutorialRequest.getTutorialRequest()
+          .then((tutorials) => {
+            tutorials.sort((x, y) => x.isCompleted - y.isCompleted);
+            this.setState({ tutorials });
+          });
+      })
+      .catch(err => console.error(err));
+  }
+
+  updateResource = (resourceId, isCompleted) => {
+    resourceRequest.deleteResources(resourceId, isCompleted)
+      .then(() => {
+        Resources.getResourceRequest()
+          .then((resources) => {
+            resources.sort((x, y) => x.isCompleted - y.isCompleted);
+            this.setState({ resources });
+          });
+      })
+      .catch(err => console.error(err));
+  }
+
+  deleteResource = (resourceId) => {
+    resourceRequest.deleteResources(resourceId)
+      .then(() => {
+        Resources.getResourceRequest()
+          .then((resources) => {
+            this.setState({ resources });
           });
       })
       .catch(err => console.error(err));
